@@ -1,0 +1,8 @@
+ON MQTT#Connected DO
+   publish domoticz/in,'{"command":"switchlight","idx":186,"switchcmd":"Toggle"}'
+   publish domoticz/in,'{"idx":184,"nvalue":[soil#cP]}'
+ENDON
+
+ON soil#cP DO
+  publish domoticz/in,'{"idx":184,"nvalue":[soil#cP]}'
+ENDON
