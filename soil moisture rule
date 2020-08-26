@@ -1,4 +1,3 @@
-
 On System#Boot DO
   GPIO,14,1
 ENDON
