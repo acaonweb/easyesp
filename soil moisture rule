@@ -1,4 +1,4 @@
-On System#Boot DO
+ON System#Boot DO
   GPIO,14,1
 ENDON
 
