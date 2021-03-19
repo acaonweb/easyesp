@@ -1,9 +1,13 @@
 on System#Wake do
-GPIO,14,1
+  GPIO,14,1
 endon
 
 on System#Sleep do
-GPIO,14,0
+ IF [soil#cP]>0
+  publish domoticz/in,'{"idx":184,"nvalue":[soil#cP]}'
+ ENDIF
+ publish domoticz/in,'{"idx":185,"nvalue":[raw#cP]}'
+ GPIO,14,0
 endon
 
 ON MQTT#Connected DO
