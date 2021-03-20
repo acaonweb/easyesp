@@ -1,13 +1,13 @@
 on System#Wake do
-  GPIO,14,1
+   GPIO,14,1
 endon
 
 on System#Sleep do
  IF [soil#cP]>0
   publish domoticz/in,'{"idx":184,"nvalue":[soil#cP]}'
  ENDIF
- publish domoticz/in,'{"idx":185,"nvalue":[raw#cP]}'
- GPIO,14,0
+publish domoticz/in,'{"idx":185,"svalue":"[raw#cP]"}'
+GPIO,14,0
 endon
 
 ON MQTT#Connected DO
@@ -15,12 +15,12 @@ ON MQTT#Connected DO
    publish domoticz/in,'{"command":"switchlight","idx":186,"switchcmd":"Toggle"}'
    publish domoticz/in,'{"idx":184,"nvalue":[soil#cP]}'
  ENDIF
-   publish domoticz/in,'{"idx":185,"nvalue":[raw#cP]}'
+   publish domoticz/in,'{"idx":185,"svalue":"[raw#cP]"}'
 ENDON
 
 ON soil#cP DO
  IF [soil#cP]>0
   publish domoticz/in,'{"idx":184,"nvalue":[soil#cP]}'
  ENDIF
-  publish domoticz/in,'{"idx":185,"nvalue":[raw#cP]}'
+  publish domoticz/in,'{"idx":185,"svalue":"[raw#cP]"}'
 ENDON
