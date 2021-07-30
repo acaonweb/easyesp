@@ -1,0 +1,19 @@
+on fan#speed do
+  publish domoticz/in, '{"command": "switchlight", "idx": 285, "switchcmd": "Set Level", "level": [fan#speed] }'
+  pwm,15,[fan#speed]
+endon
+
+on OnOff#state do
+  if [OnOff#state]=1
+    publish domoticz/in, '{"command": "switchlight", "idx": 285, "switchcmd": "Off" }'
+    pwm,15,0
+  else
+    publish domoticz/in, '{"command": "switchlight", "idx": 285, "switchcmd": "Set Level", "level": [fan#speed] }'
+    pwm,15,[fan#speed]
+  endif
+endon
+
+on sniff#speed do 
+  pwm,15,[sniff#speed]
+TaskvalueSet 1,1,[sniff#speed]
+endon  
